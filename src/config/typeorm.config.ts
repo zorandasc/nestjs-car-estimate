@@ -29,7 +29,6 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
     } else if (process.env.NODE_ENV === 'production') {
       return {
         type: this.configService.get<any>('DB_TYPE'),
-        database: this.configService.get<string>('DB_NAME'),
         url: process.env.DATABASE_URL,
         autoLoadEntities: true,
         //synhronize false
@@ -37,6 +36,7 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
         migrationsRun: JSON.parse(
           this.configService.get<string>('MIGRATIONS_RUN'),
         ),
+        //THIS IS FOR HEROKU
         ssl: {
           rejectUnauthorized: JSON.parse(this.configService.get<string>('SSL')),
         },
