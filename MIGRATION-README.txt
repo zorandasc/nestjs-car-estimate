@@ -7,5 +7,8 @@ migrations src/migrations/initial-schema
 npm run typeorm migration:generate src/migrations/initial-schema
 
 
-PRIMJENI MIGRAYTION SA:
+RUN MIGRAYTION WITH:
+Because of migration:[], field in data-source.ts.
+TypeOrm cli will know how to run.
+
 npm run typeorm migration:run
