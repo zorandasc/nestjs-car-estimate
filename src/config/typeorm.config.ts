@@ -29,17 +29,28 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
     } else if (process.env.NODE_ENV === 'production') {
       return {
         type: this.configService.get<any>('DB_TYPE'),
-        url: process.env.DATABASE_URL,
+        //FOR LOCAL PRODUCTION DATABASE
+        port: this.configService.get<any>('DB_PORT'),
+        //FOR LOCAL PRODUCTION DATABASE
+        host: this.configService.get<any>('DB_HOST'),
+        //FOR LOCAL PRODUCTION DATABASE
+        username: this.configService.get<any>('DB_USERNAME'),
+        //FOR LOCAL PRODUCTION DATABASE
+        password: this.configService.get<any>('DB_PASSWORD'),
+        //FOR LOCAL PRODUCTION DATABASE
+        database: this.configService.get<any>('DB_DATABASE'),
+        //FOR REMOTE DATABASE USE URL
+        //url: process.env.DATABASE_URL,
         autoLoadEntities: true,
         //synhronize false
         synchronize: JSON.parse(this.configService.get<string>('SYNCHRONIZE')),
         migrationsRun: JSON.parse(
           this.configService.get<string>('MIGRATIONS_RUN'),
         ),
-        //THIS IS FOR HEROKU
-        ssl: {
-          rejectUnauthorized: JSON.parse(this.configService.get<string>('SSL')),
-        },
+        //FOR REMOTE DATABASE
+        // ssl: {
+        ///  rejectUnauthorized: JSON.parse(this.configService.get<string>('SSL')),
+        //},
       };
     }
   }

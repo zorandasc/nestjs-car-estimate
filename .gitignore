@@ -1,5 +1,7 @@
-.env.development
-.env.test
+#SHOULD BE IGNORED IN GITHUB
+#.env.development
+#.env.test
+#.env.production
 
 # compiled output
 /dist
